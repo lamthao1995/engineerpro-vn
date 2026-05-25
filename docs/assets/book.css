@@ -59,9 +59,12 @@
   font-size: 1rem;
 }
 
-/* LinkedIn social link */
+/* Social links — LinkedIn + Portfolio */
 .author-card .author-social {
   margin: 0.6rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .linkedin-link {
@@ -96,6 +99,26 @@
   font-size: 0.78rem;
   font-family: Arial, sans-serif;
   letter-spacing: -0.05em;
+}
+
+/* Portfolio link — gradient tím nhẹ, phân biệt với LinkedIn */
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff !important;
+  border-radius: 6px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.portfolio-link:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
 }
 
 /* --- Acknowledgments / Lời cảm ơn (dưới Về tác giả) --- */
