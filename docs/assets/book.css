@@ -597,6 +597,14 @@ html[lang="en"] .author:first-of-type::before {
   background: #145dbf;
 }
 
+.course-btn-tertiary {
+  background: #7c3aed;
+}
+
+.course-btn-tertiary:hover {
+  background: #6325c4;
+}
+
 /* On narrow screens, stack photo above text */
 @media (max-width: 700px) {
   .author-card {
