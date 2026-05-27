@@ -409,6 +409,17 @@ html[lang="en"] .author:first-of-type::before {
   color: #3a2c00;
 }
 
+/* The gold sponsor card keeps its light-cream background in both
+   light and dark mode. Force any <strong>/<em> inside to inherit the
+   parent's dark brown color so water.css's `strong { color: white }`
+   override in dark mode doesn't make bold text vanish on cream BG. */
+.gold-sponsor strong,
+.gold-sponsor em,
+.gold-sponsor b,
+.gold-sponsor i {
+  color: inherit;
+}
+
 .gold-sponsor .gift-callout {
   margin: 1rem 0;
   padding: 1rem 1.25rem;
@@ -668,7 +679,9 @@ code {
     border-left-color: #6b9bff;
   }
   .author-card .author-photo {
-    border-color: #2a2a2a;
+    /* Subtle light ring instead of the white ring (which would be too
+       harsh) or dark ring (invisible against dark card BG). */
+    border-color: rgba(255, 255, 255, 0.18);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   }
   .author-card .author-role {
@@ -776,5 +789,54 @@ code {
   }
   .video-caption a {
     color: #ff7575;
+  }
+
+  /* --- Syntax highlighting (pandoc tango) — re-tint for dark background.
+       Tango defaults are dark colors (e.g. .va = #000000) → invisible on dark
+       code block. Replace with a One-Dark inspired bright palette. --- */
+  code span.va  { color: #9cdcfe; }                          /* Variable (self, cls, x...) */
+  code span.kw  { color: #c678dd; font-weight: bold; }       /* Keyword (def, class, lambda) */
+  code span.cf  { color: #c678dd; font-weight: bold; }       /* ControlFlow (if, for, return) */
+  code span.im  { color: #c678dd; font-weight: bold; }       /* Import (from, import) */
+  code span.bu  { color: #e5c07b; }                          /* BuiltIn (print, len, range) */
+  code span.fu  { color: #61afef; font-weight: bold; }       /* Function name */
+  code span.at  { color: #56b6c2; }                          /* Attribute */
+  code span.dt  { color: #56b6c2; }                          /* DataType (int, str, List) */
+  code span.dv  { color: #d19a66; }                          /* Decimal value */
+  code span.bn  { color: #d19a66; }                          /* BaseN */
+  code span.fl  { color: #d19a66; }                          /* Float */
+  code span.st  { color: #98c379; }                          /* String */
+  code span.ss  { color: #98c379; }                          /* SpecialString */
+  code span.vs  { color: #98c379; }                          /* VerbatimString */
+  code span.ch  { color: #98c379; }                          /* Char */
+  code span.co  { color: #7f8c98; font-style: italic; }      /* Comment */
+  code span.cv  { color: #7f8c98; font-style: italic; font-weight: bold; }
+  code span.do  { color: #7f8c98; font-style: italic; font-weight: bold; }
+  code span.an  { color: #7f8c98; font-style: italic; font-weight: bold; }
+  code span.in  { color: #7f8c98; font-style: italic; font-weight: bold; }
+  code span.wa  { color: #d19a66; font-style: italic; font-weight: bold; }
+  code span.cn  { color: #d19a66; }                          /* Constant */
+  code span.op  { color: #abb2bf; }                          /* Operator */
+  code span.sc  { color: #abb2bf; }                          /* SpecialChar */
+  code span.ot  { color: #abb2bf; }                          /* Other */
+  code span.pp  { color: #c678dd; font-style: italic; }      /* Preprocessor */
+  code span.al  { color: #e06c75; font-weight: bold; }       /* Alert */
+  code span.er  { color: #e06c75; font-weight: bold; }       /* Error */
+  /* Line numbers — pandoc default #aaaaaa is decent on dark already
+     but a touch low contrast; bump slightly. Border lives on pre.numberSource
+     (not on inner code). */
+  pre.numberSource code > span > a:first-child::before {
+    color: #9aa3ad;
+  }
+  pre.numberSource {
+    border-left-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Defensive: pandoc inlines `div.sourceCode { background: #f8f8f8 }`.
+     The inner <code> uses water.css `--background` which is dark in dark mode,
+     so the wrapper is normally hidden. Set the wrapper transparent so a
+     light-grey edge can never leak through. */
+  div.sourceCode {
+    background-color: transparent;
   }
 }
